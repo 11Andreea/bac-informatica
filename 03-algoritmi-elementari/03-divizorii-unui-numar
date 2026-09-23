@@ -1,0 +1,25 @@
+//Algoritmii pentru determinarea divizorilor unui numar
+#include <iostream>
+using namespace std;
+
+void var1(int n) {
+    for(int d=1 ; d <= n ; d++ )
+        if(n % d == 0)
+            cout << d << " ";
+}
+
+void var_EFICIENTA(int n) {
+       for(int d=1 ;d * d<=n;d++)
+        if(n % d == 0)
+        {
+            cout << d << " ";
+            if(d * d < n) // dacă d != sqrt(n)
+                cout << n / d << " ";
+        }
+}
+
+int main() {
+    int n; cin>>n;
+    var_EFICIENTA(n);
+    return 0;
+}
