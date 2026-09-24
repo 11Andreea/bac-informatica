@@ -1,2487 +1,1904 @@
-\# Tablouri unidimensionale
+# Tablouri unidimensionale
 
 
-
-Un \*\*tablou unidimensional\*\* este o structură de date formată dintr-un număr finit de elemente de același tip, memorate în ordine și accesibile prin intermediul unui indice.
-
+Un **tablou unidimensional** este o structură de date formată dintr-un număr finit de elemente de același tip, memorate în ordine și accesibile prin intermediul unui indice.
 
 
 În problemele de Bacalaureat, tablourile sunt folosite pentru memorarea și prelucrarea unor șiruri de valori.
 
 
-
-\---
-
+---
 
 
-\## 1. Declararea unui tablou
-
+## 1. Declararea unui tablou
 
 
 În C/C++, un tablou se declară astfel:
 
 
-
 ```cpp
+tip nume[dimensiune];
 
-tip nume\[dimensiune];
-
-````
-
-
+```
 
 Exemplu:
 
 
-
 ```cpp
-
-int a\[100];
+int a[100];
 
 ```
 
-
-
 Declararea de mai sus rezervă spațiu pentru 100 de numere întregi.
-
 
 
 În problemele de BAC, este recomandat ca dimensiunea maximă să fie declarată printr-o constantă:
 
 
-
 ```cpp
-
 const int NMAX = 1000;
 
-int a\[NMAX];
+int a[NMAX];
 
 ```
 
+---
 
 
-\---
-
-
-
-\## 2. Indicii tabloului
-
+## 2. Indicii tabloului
 
 
 În C/C++, indicii unui tablou încep de la `0`.
 
 
-
 Pentru:
 
 
-
 ```cpp
-
-int a\[5];
+int a[5];
 
 ```
-
-
 
 elementele sunt:
 
 
-
 ```text
-
 indice:   0   1   2   3   4
 
-&#x20;         ↓   ↓   ↓   ↓   ↓
+          ↓   ↓   ↓   ↓   ↓
 
-element: a\[0] a\[1] a\[2] a\[3] a\[4]
+element: a[0] a[1] a[2] a[3] a[4]
 
 ```
-
-
 
 Prin urmare, dacă tabloul are `n` elemente, ultimul element este:
 
 
-
 ```cpp
-
-a\[n - 1]
+a[n - 1]
 
 ```
 
-
-
-\### Exemplu
-
+### Exemplu
 
 
 ```cpp
+a[0] = 10;
 
-a\[0] = 10;
+a[1] = 20;
 
-a\[1] = 20;
-
-a\[2] = 30;
+a[2] = 30;
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 3. Citirea unui tablou
-
+# 3. Citirea unui tablou
 
 
 De obicei se citește mai întâi numărul de elemente `n`, apoi cele `n` elemente.
 
 
-
 ```cpp
-
-int n, a\[100];
-
+int n, a[100];
 
 
 cin >> n;
 
 
-
 for (int i = 0; i < n; i++)
 
-&#x20;   cin >> a\[i];
+    cin >> a[i];
 
 ```
-
-
 
 Este important ca bucla să parcurgă exact elementele existente:
 
 
-
 ```cpp
-
 i = 0, 1, ..., n - 1
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 4. Afișarea unui tablou
-
+# 4. Afișarea unui tablou
 
 
 Pentru afișarea tuturor elementelor:
 
 
-
 ```cpp
-
 for (int i = 0; i < n; i++)
 
-&#x20;   cout << a\[i] << " ";
+    cout << a[i] << " ";
 
 ```
-
-
 
 Dacă se dorește afișarea pe linii separate:
 
 
-
 ```cpp
-
 for (int i = 0; i < n; i++)
 
-&#x20;   cout << a\[i] << '\\n';
+    cout << a[i] << '\\n';
 
 ```
 
+---
 
 
-\---
+# 5. Parcurgerea unui tablou
 
 
-
-\# 5. Parcurgerea unui tablou
-
-
-
-Cea mai importantă operație asupra unui tablou este \*\*parcurgerea\*\*.
-
+Cea mai importantă operație asupra unui tablou este **parcurgerea**.
 
 
 Forma generală:
 
 
-
 ```cpp
-
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   // prelucrarea lui a\[i]
+    // prelucrarea lui a[i]
 
 }
 
 ```
 
-
-
 În funcție de problemă, putem parcurge tabloul:
 
 
+* de la stânga la dreapta;
 
-\* de la stânga la dreapta;
+* de la dreapta la stânga;
 
-\* de la dreapta la stânga;
+* doar anumite poziții;
 
-\* doar anumite poziții;
-
-\* doar elementele care îndeplinesc o condiție.
-
+* doar elementele care îndeplinesc o condiție.
 
 
-\---
+---
 
 
-
-\## 5.1. Parcurgere de la stânga la dreapta
-
+## 5.1. Parcurgere de la stânga la dreapta
 
 
 ```cpp
-
 for (int i = 0; i < n; i++)
 
-&#x20;   cout << a\[i] << " ";
+    cout << a[i] << " ";
 
 ```
 
+---
 
 
-\---
-
-
-
-\## 5.2. Parcurgere de la dreapta la stânga
-
+## 5.2. Parcurgere de la dreapta la stânga
 
 
 ```cpp
-
 for (int i = n - 1; i >= 0; i--)
 
-&#x20;   cout << a\[i] << " ";
+    cout << a[i] << " ";
 
 ```
 
+---
 
 
-\---
-
-
-
-\## 5.3. Parcurgerea pozițiilor pare
-
+## 5.3. Parcurgerea pozițiilor pare
 
 
 Dacă pozițiile sunt considerate începând de la `0`:
 
 
-
 ```cpp
-
 for (int i = 0; i < n; i += 2)
 
-&#x20;   cout << a\[i] << " ";
+    cout << a[i] << " ";
 
 ```
 
+---
 
 
-\---
-
-
-
-\## 5.4. Parcurgerea pozițiilor impare
-
+## 5.4. Parcurgerea pozițiilor impare
 
 
 ```cpp
-
 for (int i = 1; i < n; i += 2)
 
-&#x20;   cout << a\[i] << " ";
+    cout << a[i] << " ";
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 6. Citirea și prelucrarea simultană
-
+# 6. Citirea și prelucrarea simultană
 
 
 Nu este întotdeauna necesar să memorăm toate elementele.
 
 
-
 De exemplu, pentru calcularea sumei:
 
 
-
 ```cpp
-
 int n, x, s = 0;
-
 
 
 cin >> n;
 
 
-
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   cin >> x;
+    cin >> x;
 
-&#x20;   s += x;
+    s += x;
 
 }
 
 ```
 
-
-
 În acest caz nu avem nevoie de un tablou.
 
 
-
-\### Principiu important
-
+### Principiu important
 
 
-Dacă problema cere doar o informație care poate fi calculată pe măsură ce citim valorile, \*\*nu este obligatoriu să memorăm tabloul\*\*.
+Dacă problema cere doar o informație care poate fi calculată pe măsură ce citim valorile, **nu este obligatoriu să memorăm tabloul**.
 
 
-
-\---
-
+---
 
 
-\# 7. Accesarea unui element
-
+# 7. Accesarea unui element
 
 
 Un element este accesat folosind indicele său:
 
 
-
 ```cpp
-
-a\[i]
+a[i]
 
 ```
-
-
 
 Exemple:
 
 
-
 ```cpp
+cout << a[0];       // primul element
 
-cout << a\[0];       // primul element
-
-cout << a\[n - 1];   // ultimul element
+cout << a[n - 1];   // ultimul element
 
 ```
-
-
 
 Putem modifica un element:
 
 
-
 ```cpp
-
-a\[3] = 100;
+a[3] = 100;
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 8. Calcularea sumei elementelor
-
+# 8. Calcularea sumei elementelor
 
 
 ```cpp
-
 int s = 0;
-
 
 
 for (int i = 0; i < n; i++)
 
-&#x20;   s += a\[i];
+    s += a[i];
 
 ```
-
-
 
 La final:
 
 
-
 ```cpp
-
 s
 
 ```
 
-
-
 conține suma tuturor elementelor.
 
 
-
-\---
-
+---
 
 
-\# 9. Calcularea produsului elementelor
-
+# 9. Calcularea produsului elementelor
 
 
 ```cpp
-
 long long p = 1;
-
 
 
 for (int i = 0; i < n; i++)
 
-&#x20;   p \*= a\[i];
+    p *= a[i];
 
 ```
-
-
 
 Este recomandat să folosim `long long` dacă produsul poate deveni mare.
 
 
-
-\---
-
+---
 
 
-\# 10. Numărarea elementelor care respectă o condiție
-
+# 10. Numărarea elementelor care respectă o condiție
 
 
 Model general:
 
 
-
 ```cpp
-
 int cnt = 0;
-
 
 
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (conditie)
+    if (conditie)
 
-&#x20;       cnt++;
+        cnt++;
 
 }
 
 ```
 
-
-
-\### Exemplu
-
+### Exemplu
 
 
 Numărul elementelor pare:
 
 
-
 ```cpp
-
 int cnt = 0;
 
 
-
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] % 2 == 0)
+    if (a[i] % 2 == 0)
 
-&#x20;       cnt++;
+        cnt++;
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 11. Suma elementelor care respectă o condiție
-
+# 11. Suma elementelor care respectă o condiție
 
 
 ```cpp
-
 int s = 0;
-
 
 
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (conditie)
+    if (conditie)
 
-&#x20;       s += a\[i];
+        s += a[i];
 
 }
 
 ```
 
-
-
-\### Exemplu
-
+### Exemplu
 
 
 Suma elementelor pozitive:
 
 
-
 ```cpp
-
 int s = 0;
 
 
-
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] > 0)
+    if (a[i] > 0)
 
-&#x20;       s += a\[i];
+        s += a[i];
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 12. Numărarea elementelor pare și impare
-
+# 12. Numărarea elementelor pare și impare
 
 
 ```cpp
-
 int pare = 0, impare = 0;
 
 
-
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] % 2 == 0)
+    if (a[i] % 2 == 0)
 
-&#x20;       pare++;
+        pare++;
 
-&#x20;   else
+    else
 
-&#x20;       impare++;
+        impare++;
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 13. Numărarea elementelor pozitive, negative și nule
-
+# 13. Numărarea elementelor pozitive, negative și nule
 
 
 ```cpp
-
 int poz = 0, neg = 0, zero = 0;
-
 
 
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] > 0)
+    if (a[i] > 0)
 
-&#x20;       poz++;
+        poz++;
 
-&#x20;   else if (a\[i] < 0)
+    else if (a[i] < 0)
 
-&#x20;       neg++;
+        neg++;
 
-&#x20;   else
+    else
 
-&#x20;       zero++;
+        zero++;
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 14. Determinarea maximului
-
+# 14. Determinarea maximului
 
 
 Se pornește de la primul element:
 
 
-
 ```cpp
-
-int maxim = a\[0];
-
+int maxim = a[0];
 
 
 for (int i = 1; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] > maxim)
+    if (a[i] > maxim)
 
-&#x20;       maxim = a\[i];
+        maxim = a[i];
 
 }
 
 ```
-
-
 
 La final:
 
 
-
 ```cpp
-
 maxim
 
 ```
 
-
-
 este valoarea maximă din tablou.
 
 
-
-\---
-
+---
 
 
-\# 15. Determinarea minimului
-
+# 15. Determinarea minimului
 
 
 ```cpp
-
-int minim = a\[0];
-
+int minim = a[0];
 
 
 for (int i = 1; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] < minim)
+    if (a[i] < minim)
 
-&#x20;       minim = a\[i];
+        minim = a[i];
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\## De ce nu este recomandat să pornim cu `maxim = 0`?
-
+## De ce nu este recomandat să pornim cu `maxim = 0`?
 
 
 Greșit:
 
 
-
 ```cpp
-
 int maxim = 0;
 
 ```
 
-
-
 Dacă toate valorile sunt negative, rezultatul va fi incorect.
-
 
 
 Corect:
 
 
-
 ```cpp
-
-int maxim = a\[0];
+int maxim = a[0];
 
 ```
-
-
 
 Aceeași idee este valabilă pentru minim.
 
 
-
-\---
-
+---
 
 
-\# 16. Poziția maximului
-
+# 16. Poziția maximului
 
 
 Dacă trebuie determinată și poziția maximului:
 
 
-
 ```cpp
-
 int poz = 0;
-
 
 
 for (int i = 1; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] > a\[poz])
+    if (a[i] > a[poz])
 
-&#x20;       poz = i;
+        poz = i;
 
 }
 
 ```
-
-
 
 Valoarea maximă:
 
 
-
 ```cpp
-
-a\[poz]
+a[poz]
 
 ```
-
-
 
 Poziția:
 
 
-
 ```cpp
-
 poz
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 17. Poziția minimului
-
+# 17. Poziția minimului
 
 
 ```cpp
-
 int poz = 0;
-
 
 
 for (int i = 1; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] < a\[poz])
+    if (a[i] < a[poz])
 
-&#x20;       poz = i;
+        poz = i;
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 18. Primul element care respectă o condiție
-
+# 18. Primul element care respectă o condiție
 
 
 Exemplu: primul element par.
 
 
-
 ```cpp
-
 int poz = -1;
-
 
 
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] % 2 == 0)
+    if (a[i] % 2 == 0)
 
-&#x20;   {
+    {
 
-&#x20;       poz = i;
+        poz = i;
 
-&#x20;       break;
+        break;
 
-&#x20;   }
+    }
 
 }
 
 ```
-
-
 
 Dacă `poz == -1`, nu există niciun element par.
 
 
-
-\---
-
+---
 
 
-\# 19. Ultimul element care respectă o condiție
-
+# 19. Ultimul element care respectă o condiție
 
 
 ```cpp
-
 int poz = -1;
-
 
 
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (conditie)
+    if (conditie)
 
-&#x20;       poz = i;
+        poz = i;
 
 }
 
 ```
 
-
-
 Nu folosim `break`, deoarece vrem să continuăm până la sfârșit.
 
 
-
-\---
-
+---
 
 
-\# 20. Verificarea existenței unui element
-
+# 20. Verificarea existenței unui element
 
 
 Exemplu: verificăm dacă există cel puțin un element egal cu `x`.
 
 
-
 ```cpp
-
 bool exista = false;
-
 
 
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] == x)
+    if (a[i] == x)
 
-&#x20;   {
+    {
 
-&#x20;       exista = true;
+        exista = true;
 
-&#x20;       break;
+        break;
 
-&#x20;   }
+    }
 
 }
 
 ```
-
-
 
 Alternativ:
 
 
-
 ```cpp
-
 int poz = -1;
-
 
 
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] == x)
+    if (a[i] == x)
 
-&#x20;   {
+    {
 
-&#x20;       poz = i;
+        poz = i;
 
-&#x20;       break;
+        break;
 
-&#x20;   }
+    }
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 21. Verificarea unei proprietăți pentru toate elementele
-
+# 21. Verificarea unei proprietăți pentru toate elementele
 
 
 Exemplu: verificăm dacă toate elementele sunt pozitive.
 
 
-
 ```cpp
-
 bool toate = true;
-
 
 
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] <= 0)
+    if (a[i] <= 0)
 
-&#x20;   {
+    {
 
-&#x20;       toate = false;
+        toate = false;
 
-&#x20;       break;
+        break;
 
-&#x20;   }
+    }
 
 }
 
 ```
 
-
-
 Ideea generală:
 
 
-
 ```text
-
 presupunem că proprietatea este adevărată
 
-&#x20;       ↓
+        ↓
 
 căutăm o excepție
 
-&#x20;       ↓
+        ↓
 
 dacă găsim o excepție → proprietatea este falsă
 
 ```
 
+---
 
 
-\---
+# 22. Verificarea dacă tabloul este ordonat
 
 
-
-\# 22. Verificarea dacă tabloul este ordonat
-
-
-
-\## Crescător
-
+## Crescător
 
 
 Pentru ordine crescătoare:
 
 
-
 ```cpp
-
 bool crescator = true;
-
 
 
 for (int i = 0; i < n - 1; i++)
 
 {
 
-&#x20;   if (a\[i] > a\[i + 1])
+    if (a[i] > a[i + 1])
 
-&#x20;   {
+    {
 
-&#x20;       crescator = false;
+        crescator = false;
 
-&#x20;       break;
+        break;
 
-&#x20;   }
+    }
 
 }
 
 ```
-
-
 
 Este permisă egalitatea:
 
 
-
 ```text
-
 1 2 2 5 8
 
 ```
 
-
-
 este crescător.
 
 
-
-\---
-
+---
 
 
-\## Strict crescător
-
+## Strict crescător
 
 
 ```cpp
-
 bool strict = true;
-
 
 
 for (int i = 0; i < n - 1; i++)
 
 {
 
-&#x20;   if (a\[i] >= a\[i + 1])
+    if (a[i] >= a[i + 1])
 
-&#x20;   {
+    {
 
-&#x20;       strict = false;
+        strict = false;
 
-&#x20;       break;
+        break;
 
-&#x20;   }
+    }
 
 }
 
 ```
-
-
 
 Exemplu:
 
 
-
 ```text
-
 1 2 4 7
 
 ```
 
-
-
 este strict crescător.
 
 
-
-\---
-
+---
 
 
-\## Descrescător
-
+## Descrescător
 
 
 ```cpp
-
 bool descrescator = true;
 
 
-
 for (int i = 0; i < n - 1; i++)
 
 {
 
-&#x20;   if (a\[i] < a\[i + 1])
+    if (a[i] < a[i + 1])
 
-&#x20;   {
+    {
 
-&#x20;       descrescator = false;
+        descrescator = false;
 
-&#x20;       break;
+        break;
 
-&#x20;   }
+    }
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\## Strict descrescător
-
+## Strict descrescător
 
 
 ```cpp
-
 bool strict = true;
 
 
-
 for (int i = 0; i < n - 1; i++)
 
 {
 
-&#x20;   if (a\[i] <= a\[i + 1])
+    if (a[i] <= a[i + 1])
 
-&#x20;   {
+    {
 
-&#x20;       strict = false;
+        strict = false;
 
-&#x20;       break;
+        break;
 
-&#x20;   }
+    }
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 23. Calcularea mediei aritmetice
-
+# 23. Calcularea mediei aritmetice
 
 
 ```cpp
-
 int s = 0;
-
 
 
 for (int i = 0; i < n; i++)
 
-&#x20;   s += a\[i];
-
+    s += a[i];
 
 
 double media = (double)s / n;
 
 ```
 
-
-
 Conversia la `double` este importantă pentru a evita împărțirea întreagă.
 
 
-
-\---
-
+---
 
 
-\# 24. Numărarea aparițiilor unei valori
-
+# 24. Numărarea aparițiilor unei valori
 
 
 ```cpp
-
 int cnt = 0;
-
 
 
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] == x)
+    if (a[i] == x)
 
-&#x20;       cnt++;
+        cnt++;
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 25. Frecvența valorilor
-
+# 25. Frecvența valorilor
 
 
 Dacă valorile se află într-un interval mic, putem folosi un tablou de frecvență.
 
 
-
 Exemplu: valorile sunt între `0` și `100`.
 
 
-
 ```cpp
-
-int f\[101] = {0};
-
+int f[101] = {0};
 
 
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   f\[a\[i]]++;
+    f[a[i]]++;
 
 }
 
 ```
 
-
-
 După parcurgere:
 
 
-
 ```cpp
-
-f\[x]
+f[x]
 
 ```
-
-
 
 reprezintă numărul de apariții ale valorii `x`.
 
 
-
-\---
-
+---
 
 
-\## Exemplu
-
+## Exemplu
 
 
 Pentru:
 
 
-
 ```text
-
 2 5 2 3 5 2
 
 ```
 
-
-
 obținem:
 
 
-
 ```text
+f[2] = 3
 
-f\[2] = 3
+f[3] = 1
 
-f\[3] = 1
-
-f\[5] = 2
+f[5] = 2
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 26. Afișarea valorilor distincte
-
+# 26. Afișarea valorilor distincte
 
 
 O metodă simplă este să verificăm dacă valoarea a mai apărut înainte.
 
 
-
 ```cpp
-
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   bool apareAnterior = false;
+    bool apareAnterior = false;
 
 
+    for (int j = 0; j < i; j++)
 
-&#x20;   for (int j = 0; j < i; j++)
+    {
 
-&#x20;   {
+        if (a[i] == a[j])
 
-&#x20;       if (a\[i] == a\[j])
+        {
 
-&#x20;       {
+            apareAnterior = true;
 
-&#x20;           apareAnterior = true;
+            break;
 
-&#x20;           break;
+        }
 
-&#x20;       }
-
-&#x20;   }
-
+    }
 
 
-&#x20;   if (!apareAnterior)
+    if (!apareAnterior)
 
-&#x20;       cout << a\[i] << " ";
+        cout << a[i] << " ";
 
 }
 
 ```
 
-
-
 Această metodă are complexitate `O(n²)`.
-
 
 
 Dacă valorile sunt într-un interval mic, este mai eficient un tablou de frecvență.
 
 
-
-\---
-
+---
 
 
-\# 27. Eliminarea elementelor dintr-un tablou
-
+# 27. Eliminarea elementelor dintr-un tablou
 
 
 Eliminarea unui element presupune deplasarea elementelor din dreapta spre stânga.
 
 
-
 Dacă vrem să eliminăm elementul de pe poziția `p`:
 
 
-
 ```cpp
-
 for (int i = p; i < n - 1; i++)
 
-&#x20;   a\[i] = a\[i + 1];
-
+    a[i] = a[i + 1];
 
 
 n--;
 
 ```
 
-
-
-\### Exemplu
-
+### Exemplu
 
 
 Inițial:
 
 
-
 ```text
-
 10 20 30 40 50
 
 ```
 
-
-
 Eliminăm `30`.
-
 
 
 Rezultat:
 
 
-
 ```text
-
 10 20 40 50
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 28. Inserarea unui element
-
+# 28. Inserarea unui element
 
 
 Pentru inserarea valorii `x` pe poziția `p`, deplasăm elementele spre dreapta:
 
 
-
 ```cpp
-
 for (int i = n; i > p; i--)
 
-&#x20;   a\[i] = a\[i - 1];
+    a[i] = a[i - 1];
 
 
-
-a\[p] = x;
+a[p] = x;
 
 n++;
 
 ```
 
-
-
 Este necesar să existe spațiu suficient în tabloul declarat.
 
 
-
-\---
-
+---
 
 
-\# 29. Inversarea unui tablou
-
+# 29. Inversarea unui tablou
 
 
 Putem inversa tabloul folosind doi indici:
 
 
-
 ```cpp
-
 int st = 0;
 
 int dr = n - 1;
-
 
 
 while (st < dr)
 
 {
 
-&#x20;   swap(a\[st], a\[dr]);
+    swap(a[st], a[dr]);
 
 
+    st++;
 
-&#x20;   st++;
-
-&#x20;   dr--;
+    dr--;
 
 }
 
 ```
 
-
-
 Exemplu:
 
 
-
 ```text
-
 1 2 3 4 5
 
 ```
 
-
-
 devine:
 
 
-
 ```text
-
 5 4 3 2 1
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 30. Copierea unui tablou
-
+# 30. Copierea unui tablou
 
 
 ```cpp
-
 for (int i = 0; i < n; i++)
 
-&#x20;   b\[i] = a\[i];
+    b[i] = a[i];
 
 ```
-
-
 
 După executare, `b` conține aceleași valori ca `a`.
 
 
-
-\---
-
+---
 
 
-\# 31. Compararea a două tablouri
-
+# 31. Compararea a două tablouri
 
 
 Pentru două tablouri cu același număr de elemente:
 
 
-
 ```cpp
-
 bool egale = true;
-
 
 
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] != b\[i])
+    if (a[i] != b[i])
 
-&#x20;   {
+    {
 
-&#x20;       egale = false;
+        egale = false;
 
-&#x20;       break;
+        break;
 
-&#x20;   }
+    }
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 32. Interclasarea a două tablouri ordonate
-
+# 32. Interclasarea a două tablouri ordonate
 
 
 Dacă avem două tablouri sortate crescător:
 
 
-
 ```text
-
 a: 1 4 7 10
 
 b: 2 3 8 12
 
 ```
 
-
-
 putem construi un al treilea tablou sortat.
 
 
-
 ```cpp
-
 int i = 0, j = 0, k = 0;
 
 
-
-while (i < n \&\& j < m)
+while (i < n && j < m)
 
 {
 
-&#x20;   if (a\[i] < b\[j])
+    if (a[i] < b[j])
 
-&#x20;       c\[k++] = a\[i++];
+        c[k++] = a[i++];
 
-&#x20;   else
+    else
 
-&#x20;       c\[k++] = b\[j++];
+        c[k++] = b[j++];
 
 }
 
 
-
 while (i < n)
 
-&#x20;   c\[k++] = a\[i++];
-
+    c[k++] = a[i++];
 
 
 while (j < m)
 
-&#x20;   c\[k++] = b\[j++];
+    c[k++] = b[j++];
 
 ```
-
-
 
 Rezultatul:
 
 
-
 ```text
-
 1 2 3 4 7 8 10 12
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 33. Căutarea liniară
-
+# 33. Căutarea liniară
 
 
 Căutarea liniară verifică elementele unul câte unul.
 
 
-
 ```cpp
-
 int poz = -1;
-
 
 
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] == x)
+    if (a[i] == x)
 
-&#x20;   {
+    {
 
-&#x20;       poz = i;
+        poz = i;
 
-&#x20;       break;
+        break;
 
-&#x20;   }
+    }
 
 }
 
 ```
 
-
-
 Complexitatea este:
 
 
-
 ```text
-
 O(n)
 
 ```
 
+---
 
 
-\---
+# 34. Căutarea binară
 
 
-
-\# 34. Căutarea binară
-
-
-
-Căutarea binară poate fi folosită atunci când tabloul este \*\*ordonat\*\*.
-
+Căutarea binară poate fi folosită atunci când tabloul este **ordonat**.
 
 
 Ideea:
 
 
+1. se verifică elementul din mijloc;
 
-1\. se verifică elementul din mijloc;
+2. dacă este valoarea căutată, ne oprim;
 
-2\. dacă este valoarea căutată, ne oprim;
+3. dacă este prea mic, căutăm în jumătatea dreaptă;
 
-3\. dacă este prea mic, căutăm în jumătatea dreaptă;
-
-4\. dacă este prea mare, căutăm în jumătatea stângă.
-
+4. dacă este prea mare, căutăm în jumătatea stângă.
 
 
 ```cpp
-
 int st = 0, dr = n - 1;
 
 bool gasit = false;
-
 
 
 while (st <= dr)
 
 {
 
-&#x20;   int mij = (st + dr) / 2;
+    int mij = (st + dr) / 2;
 
 
+    if (a[mij] == x)
 
-&#x20;   if (a\[mij] == x)
+    {
 
-&#x20;   {
+        gasit = true;
 
-&#x20;       gasit = true;
+        break;
 
-&#x20;       break;
+    }
 
-&#x20;   }
+    else if (a[mij] < x)
 
-&#x20;   else if (a\[mij] < x)
+        st = mij + 1;
 
-&#x20;       st = mij + 1;
+    else
 
-&#x20;   else
-
-&#x20;       dr = mij - 1;
+        dr = mij - 1;
 
 }
 
 ```
 
-
-
 Complexitatea este:
 
 
-
 ```text
-
 O(log n)
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 35. Sortarea unui tablou
-
+# 35. Sortarea unui tablou
 
 
 Sortarea înseamnă așezarea elementelor într-o anumită ordine.
 
 
-
 Exemplu crescător:
 
 
-
 ```text
-
 5 2 8 1 4
 
 ```
 
-
-
 devine:
 
 
-
 ```text
-
 1 2 4 5 8
 
 ```
 
+---
 
 
-\---
-
-
-
-\## 35.1. Sortare prin selecție
-
+## 35.1. Sortare prin selecție
 
 
 ```cpp
-
 for (int i = 0; i < n - 1; i++)
 
 {
 
-&#x20;   int pozMin = i;
+    int pozMin = i;
 
 
+    for (int j = i + 1; j < n; j++)
 
-&#x20;   for (int j = i + 1; j < n; j++)
+    {
 
-&#x20;   {
+        if (a[j] < a[pozMin])
 
-&#x20;       if (a\[j] < a\[pozMin])
+            pozMin = j;
 
-&#x20;           pozMin = j;
-
-&#x20;   }
-
+    }
 
 
-&#x20;   swap(a\[i], a\[pozMin]);
+    swap(a[i], a[pozMin]);
 
 }
 
 ```
-
-
 
 Complexitate:
 
 
-
 ```text
-
 O(n²)
 
 ```
 
+---
 
 
-\---
-
-
-
-\## 35.2. Sortare prin interschimbare
-
+## 35.2. Sortare prin interschimbare
 
 
 ```cpp
-
 for (int i = 0; i < n - 1; i++)
 
 {
 
-&#x20;   for (int j = i + 1; j < n; j++)
+    for (int j = i + 1; j < n; j++)
 
-&#x20;   {
+    {
 
-&#x20;       if (a\[i] > a\[j])
+        if (a[i] > a[j])
 
-&#x20;           swap(a\[i], a\[j]);
+            swap(a[i], a[j]);
 
-&#x20;   }
+    }
 
 }
 
 ```
-
-
 
 Complexitate:
 
 
-
 ```text
-
 O(n²)
 
 ```
 
+---
 
 
-\---
-
-
-
-\## 35.3. Bubble Sort
-
+## 35.3. Bubble Sort
 
 
 ```cpp
-
 for (int i = 0; i < n - 1; i++)
 
 {
 
-&#x20;   for (int j = 0; j < n - i - 1; j++)
+    for (int j = 0; j < n - i - 1; j++)
 
-&#x20;   {
+    {
 
-&#x20;       if (a\[j] > a\[j + 1])
+        if (a[j] > a[j + 1])
 
-&#x20;           swap(a\[j], a\[j + 1]);
+            swap(a[j], a[j + 1]);
 
-&#x20;   }
+    }
 
 }
 
 ```
-
-
 
 Complexitate în cazul general:
 
 
-
 ```text
-
 O(n²)
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 36. `sort()` în C++
-
+# 36. `sort()` în C++
 
 
 În C++ putem folosi funcția standard:
 
 
-
 ```cpp
-
-\#include <algorithm>
-
+#include <algorithm>
 
 
 sort(a, a + n);
 
 ```
 
-
-
 pentru sortare crescătoare.
-
 
 
 Pentru sortare descrescătoare:
 
 
-
 ```cpp
-
 sort(a, a + n, greater<int>());
 
 ```
 
-
-
 Este important să includem:
 
 
-
 ```cpp
-
-\#include <algorithm>
+#include <algorithm>
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 37. Numărul de elemente distincte
-
+# 37. Numărul de elemente distincte
 
 
 Dacă tabloul este sortat, putem număra valorile distincte eficient.
 
 
-
 ```cpp
-
 sort(a, a + n);
-
 
 
 int cnt = 0;
 
 
-
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (i == 0 || a\[i] != a\[i - 1])
+    if (i == 0 || a[i] != a[i - 1])
 
-&#x20;       cnt++;
+        cnt++;
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 38. Eliminarea valorilor duplicate
-
+# 38. Eliminarea valorilor duplicate
 
 
 Dacă tabloul este sortat, duplicatele pot fi eliminate prin deplasare.
 
 
-
 O variantă simplă:
 
 
-
 ```cpp
-
 sort(a, a + n);
 
 
-
 int m = 0;
-
 
 
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (i == 0 || a\[i] != a\[i - 1])
+    if (i == 0 || a[i] != a[i - 1])
 
-&#x20;       a\[m++] = a\[i];
+        a[m++] = a[i];
 
 }
-
 
 
 n = m;
 
 ```
 
+---
 
 
-\---
+# 39. Secvențe de elemente
 
 
-
-\# 39. Secvențe de elemente
-
-
-
-O \*\*secvență\*\* este o porțiune consecutivă a tabloului.
-
+O **secvență** este o porțiune consecutivă a tabloului.
 
 
 Exemplu:
 
 
-
 ```text
-
 2 4 6 1 3 5 7 8
 
-&#x20;   └─────────┘
+    └─────────┘
 
 ```
-
-
 
 Elementele:
 
 
-
 ```text
-
 6 1 3 5
 
 ```
 
-
-
 formează o secvență.
-
 
 
 Elementele unei secvențe sunt consecutive în tablou.
 
 
-
-\---
-
+---
 
 
-\# 40. Lungimea unei secvențe
-
+# 40. Lungimea unei secvențe
 
 
 Dacă o secvență începe la poziția `st` și se termină la poziția `dr`, lungimea ei este:
 
 
-
 ```text
-
 dr - st + 1
 
 ```
 
-
-
 Exemplu:
 
 
-
 ```text
-
 poziții:  2  3  4  5
 
-&#x20;         ↓  ↓  ↓  ↓
+          ↓  ↓  ↓  ↓
 
-&#x20;         7  8  9 10
+          7  8  9 10
 
 ```
-
-
 
 Lungimea este:
 
 
-
 ```text
-
 5 - 2 + 1 = 4
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 41. Cea mai lungă secvență de elemente egale
-
+# 41. Cea mai lungă secvență de elemente egale
 
 
 Exemplu:
 
 
-
 ```text
-
 1 1 1 2 2 3 3 3 3 1
 
 ```
 
-
-
 Cea mai lungă secvență este:
 
 
-
 ```text
-
 3 3 3 3
 
 ```
 
-
-
 Algoritmul:
 
 
-
 ```cpp
-
 int lung = 1;
 
 int maxim = 1;
-
 
 
 for (int i = 1; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] == a\[i - 1])
+    if (a[i] == a[i - 1])
 
-&#x20;       lung++;
+        lung++;
 
-&#x20;   else
+    else
 
-&#x20;       lung = 1;
+        lung = 1;
 
 
+    if (lung > maxim)
 
-&#x20;   if (lung > maxim)
-
-&#x20;       maxim = lung;
+        maxim = lung;
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 42. Cea mai lungă secvență crescătoare
-
+# 42. Cea mai lungă secvență crescătoare
 
 
 Pentru secvențe strict crescătoare:
 
 
-
 ```cpp
-
 int lung = 1;
 
 int maxim = 1;
-
 
 
 for (int i = 1; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] > a\[i - 1])
+    if (a[i] > a[i - 1])
 
-&#x20;       lung++;
+        lung++;
 
-&#x20;   else
+    else
 
-&#x20;       lung = 1;
+        lung = 1;
 
 
+    if (lung > maxim)
 
-&#x20;   if (lung > maxim)
-
-&#x20;       maxim = lung;
+        maxim = lung;
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 43. Cea mai lungă secvență descrescătoare
-
+# 43. Cea mai lungă secvență descrescătoare
 
 
 ```cpp
-
 int lung = 1;
 
 int maxim = 1;
-
 
 
 for (int i = 1; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] < a\[i - 1])
+    if (a[i] < a[i - 1])
 
-&#x20;       lung++;
+        lung++;
 
-&#x20;   else
+    else
 
-&#x20;       lung = 1;
+        lung = 1;
 
 
+    if (lung > maxim)
 
-&#x20;   if (lung > maxim)
-
-&#x20;       maxim = lung;
+        maxim = lung;
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 44. Secvențe de elemente pare
-
+# 44. Secvențe de elemente pare
 
 
 Pentru cea mai lungă secvență de numere pare:
 
 
-
 ```cpp
-
 int lung = 0;
 
 int maxim = 0;
-
 
 
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] % 2 == 0)
+    if (a[i] % 2 == 0)
 
-&#x20;   {
+    {
 
-&#x20;       lung++;
+        lung++;
 
 
+        if (lung > maxim)
 
-&#x20;       if (lung > maxim)
+            maxim = lung;
 
-&#x20;           maxim = lung;
+    }
 
-&#x20;   }
+    else
 
-&#x20;   else
+    {
 
-&#x20;   {
+        lung = 0;
 
-&#x20;       lung = 0;
-
-&#x20;   }
+    }
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 45. Determinarea începutului unei secvențe maxime
-
+# 45. Determinarea începutului unei secvențe maxime
 
 
 Dacă vrem și poziția de început:
 
 
-
 ```cpp
-
 int lung = 1;
 
 int maxim = 1;
@@ -2491,869 +1908,644 @@ int inceput = 0;
 int inceputMax = 0;
 
 
-
 for (int i = 1; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] == a\[i - 1])
+    if (a[i] == a[i - 1])
 
-&#x20;   {
+    {
 
-&#x20;       lung++;
+        lung++;
 
-&#x20;   }
+    }
 
-&#x20;   else
+    else
 
-&#x20;   {
+    {
 
-&#x20;       lung = 1;
+        lung = 1;
 
-&#x20;       inceput = i;
+        inceput = i;
 
-&#x20;   }
+    }
 
 
+    if (lung > maxim)
 
-&#x20;   if (lung > maxim)
+    {
 
-&#x20;   {
+        maxim = lung;
 
-&#x20;       maxim = lung;
+        inceputMax = inceput;
 
-&#x20;       inceputMax = inceput;
-
-&#x20;   }
+    }
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 46. Ștergerea tuturor aparițiilor unei valori
-
+# 46. Ștergerea tuturor aparițiilor unei valori
 
 
 Dacă dorim să eliminăm toate elementele egale cu `x`:
 
 
-
 ```cpp
-
 int m = 0;
-
 
 
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] != x)
+    if (a[i] != x)
 
-&#x20;       a\[m++] = a\[i];
+        a[m++] = a[i];
 
 }
-
 
 
 n = m;
 
 ```
 
-
-
 Exemplu:
 
 
-
 ```text
-
 2 5 3 5 7 5
 
 ```
 
-
-
 pentru `x = 5` devine:
 
 
-
 ```text
-
 2 3 7
 
 ```
 
+---
 
 
-\---
+# 47. Mutarea elementelor
 
 
-
-\# 47. Mutarea elementelor
-
-
-
-\## Mutarea tuturor elementelor cu o poziție la dreapta
-
+## Mutarea tuturor elementelor cu o poziție la dreapta
 
 
 ```cpp
-
 for (int i = n; i > 0; i--)
 
-&#x20;   a\[i] = a\[i - 1];
+    a[i] = a[i - 1];
 
 ```
-
-
 
 Înainte:
 
 
-
 ```text
-
 1 2 3 4
 
 ```
 
-
-
 După:
 
 
-
 ```text
-
 \_ 1 2 3 4
 
 ```
 
+---
 
 
-\---
-
-
-
-\## Mutarea tuturor elementelor cu o poziție la stânga
-
+## Mutarea tuturor elementelor cu o poziție la stânga
 
 
 ```cpp
-
 for (int i = 0; i < n - 1; i++)
 
-&#x20;   a\[i] = a\[i + 1];
-
+    a[i] = a[i + 1];
 
 
 n--;
 
 ```
 
+---
 
 
-\---
+# 48. Rotirea unui tablou
 
 
-
-\# 48. Rotirea unui tablou
-
-
-
-\## Rotire la stânga cu o poziție
-
+## Rotire la stânga cu o poziție
 
 
 ```cpp
-
-int x = a\[0];
-
+int x = a[0];
 
 
 for (int i = 0; i < n - 1; i++)
 
-&#x20;   a\[i] = a\[i + 1];
+    a[i] = a[i + 1];
 
 
-
-a\[n - 1] = x;
+a[n - 1] = x;
 
 ```
-
-
 
 Exemplu:
 
 
-
 ```text
-
 1 2 3 4 5
 
 ```
 
-
-
 devine:
 
 
-
 ```text
-
 2 3 4 5 1
 
 ```
 
+---
 
 
-\---
-
-
-
-\## Rotire la dreapta cu o poziție
-
+## Rotire la dreapta cu o poziție
 
 
 ```cpp
-
-int x = a\[n - 1];
-
+int x = a[n - 1];
 
 
 for (int i = n - 1; i > 0; i--)
 
-&#x20;   a\[i] = a\[i - 1];
+    a[i] = a[i - 1];
 
 
-
-a\[0] = x;
+a[0] = x;
 
 ```
-
-
 
 Rezultat:
 
 
-
 ```text
-
 5 1 2 3 4
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 49. Verificarea palindromului
-
+# 49. Verificarea palindromului
 
 
 Un tablou este palindrom dacă este identic citit de la stânga la dreapta și de la dreapta la stânga.
 
 
-
 Exemplu:
 
 
-
 ```text
-
 1 2 3 2 1
 
 ```
 
-
-
 Algoritm:
 
 
-
 ```cpp
-
 bool palindrom = true;
-
 
 
 for (int i = 0; i < n / 2; i++)
 
 {
 
-&#x20;   if (a\[i] != a\[n - 1 - i])
+    if (a[i] != a[n - 1 - i])
 
-&#x20;   {
+    {
 
-&#x20;       palindrom = false;
+        palindrom = false;
 
-&#x20;       break;
+        break;
 
-&#x20;   }
+    }
 
 }
 
 ```
 
-
-
 Nu este necesară verificarea tuturor elementelor: este suficient să comparăm elementele simetrice față de centru.
 
 
-
-\---
-
+---
 
 
-\# 50. Intersectarea a două tablouri
-
+# 50. Intersectarea a două tablouri
 
 
 Dacă trebuie determinate valorile care apar în ambele tablouri, putem verifica fiecare element din primul tablou în al doilea.
 
 
-
 ```cpp
-
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   bool gasit = false;
+    bool gasit = false;
 
 
+    for (int j = 0; j < m; j++)
 
-&#x20;   for (int j = 0; j < m; j++)
+    {
 
-&#x20;   {
+        if (a[i] == b[j])
 
-&#x20;       if (a\[i] == b\[j])
+        {
 
-&#x20;       {
+            gasit = true;
 
-&#x20;           gasit = true;
+            break;
 
-&#x20;           break;
+        }
 
-&#x20;       }
-
-&#x20;   }
-
+    }
 
 
-&#x20;   if (gasit)
+    if (gasit)
 
-&#x20;       cout << a\[i] << " ";
+        cout << a[i] << " ";
 
 }
 
 ```
 
-
-
 Dacă trebuie afișate valorile distincte, trebuie tratate și duplicatele.
 
 
-
-\---
-
+---
 
 
-\# 51. Reuniunea a două tablouri
-
+# 51. Reuniunea a două tablouri
 
 
 Reuniunea conține valorile care apar în cel puțin unul dintre cele două tablouri.
 
 
-
 O soluție simplă este:
 
 
+1. afișăm valorile distincte din primul tablou;
 
-1\. afișăm valorile distincte din primul tablou;
+2. pentru fiecare element din al doilea tablou verificăm dacă nu a apărut deja;
 
-2\. pentru fiecare element din al doilea tablou verificăm dacă nu a apărut deja;
-
-3\. îl adăugăm dacă este nou.
-
+3. îl adăugăm dacă este nou.
 
 
-\---
+---
 
 
-
-\# 52. Diferența dintre două tablouri
-
+# 52. Diferența dintre două tablouri
 
 
 Diferența `A - B` conține elementele din `A` care nu apar în `B`.
 
 
-
 Pentru fiecare element din `A`, verificăm dacă apare în `B`.
 
 
-
 ```cpp
-
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   bool gasit = false;
+    bool gasit = false;
 
 
+    for (int j = 0; j < m; j++)
 
-&#x20;   for (int j = 0; j < m; j++)
+    {
 
-&#x20;   {
+        if (a[i] == b[j])
 
-&#x20;       if (a\[i] == b\[j])
+        {
 
-&#x20;       {
+            gasit = true;
 
-&#x20;           gasit = true;
+            break;
 
-&#x20;           break;
+        }
 
-&#x20;       }
-
-&#x20;   }
-
+    }
 
 
-&#x20;   if (!gasit)
+    if (!gasit)
 
-&#x20;       cout << a\[i] << " ";
+        cout << a[i] << " ";
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 53. Tablouri de caractere
-
+# 53. Tablouri de caractere
 
 
 Un șir de caractere poate fi reprezentat și printr-un tablou de caractere:
 
 
-
 ```cpp
-
-char s\[101];
+char s[101];
 
 ```
-
-
 
 Citirea unui cuvânt:
 
 
-
 ```cpp
-
 cin >> s;
 
 ```
 
+Pentru lucrul cu șiruri de caractere există însă funcții și concepte specifice, care sunt tratate separat în capitolul **Șiruri de caractere**.
 
 
-Pentru lucrul cu șiruri de caractere există însă funcții și concepte specifice, care sunt tratate separat în capitolul \*\*Șiruri de caractere\*\*.
+---
 
 
-
-\---
-
-
-
-\# 54. Tablouri cu indici de la 1
-
+# 54. Tablouri cu indici de la 1
 
 
 În unele probleme este mai convenabil să folosim indicii:
 
 
-
 ```text
-
 1, 2, ..., n
 
 ```
 
-
-
 Putem declara:
 
 
-
 ```cpp
-
-int a\[101];
+int a[101];
 
 ```
-
-
 
 și să folosim:
 
 
-
 ```cpp
-
 for (int i = 1; i <= n; i++)
 
-&#x20;   cin >> a\[i];
+    cin >> a[i];
 
 ```
-
-
 
 Este important ca tabloul să aibă suficient spațiu pentru indicele `n`.
 
 
-
-\### Atenție
-
+### Atenție
 
 
 În C/C++, indexarea începe în mod normal de la `0`.
 
 
-
 Folosirea indicilor de la `1` este doar o convenție aleasă de programator.
 
 
-
-\---
-
+---
 
 
-\# 55. Greșeli frecvente
+# 55. Greșeli frecvente
 
 
-
-\## 55.1. Depășirea limitelor tabloului
-
+## 55.1. Depășirea limitelor tabloului
 
 
 Greșit:
 
 
-
 ```cpp
-
-int a\[100];
-
+int a[100];
 
 
 for (int i = 0; i <= 100; i++)
 
-&#x20;   cin >> a\[i];
+    cin >> a[i];
 
 ```
 
-
-
-`a\[100]` nu există.
-
+`a[100]` nu există.
 
 
 Indicii valizi sunt:
 
 
-
 ```text
-
 0 ... 99
 
 ```
 
-
-
 Corect:
 
 
-
 ```cpp
-
 for (int i = 0; i < 100; i++)
 
-&#x20;   cin >> a\[i];
+    cin >> a[i];
 
 ```
 
+---
 
 
-\---
-
-
-
-\## 55.2. Confuzia dintre `n` și ultimul indice
-
+## 55.2. Confuzia dintre `n` și ultimul indice
 
 
 Dacă avem `n` elemente:
 
 
-
 ```text
-
 primul indice = 0
 
 ultimul indice = n - 1
 
 ```
 
+---
 
 
-\---
-
-
-
-\## 55.3. Inițializarea greșită a maximului/minimului
-
+## 55.3. Inițializarea greșită a maximului/minimului
 
 
 Greșit:
 
 
-
 ```cpp
-
 int maxim = 0;
 
 ```
 
-
-
 Corect:
 
 
-
 ```cpp
-
-int maxim = a\[0];
+int maxim = a[0];
 
 ```
 
+---
 
 
-\---
-
-
-
-\## 55.4. Uitarea actualizării lui `n`
-
+## 55.4. Uitarea actualizării lui `n`
 
 
 După ștergerea unui element:
 
 
-
 ```cpp
-
 n--;
 
 ```
 
-
-
 După inserare:
 
 
-
 ```cpp
-
 n++;
 
 ```
 
+---
 
 
-\---
+## 55.5. Deplasarea în direcția greșită
 
 
-
-\## 55.5. Deplasarea în direcția greșită
-
-
-
-La \*\*inserare\*\*, elementele trebuie deplasate spre dreapta:
-
+La **inserare**, elementele trebuie deplasate spre dreapta:
 
 
 ```cpp
-
 for (int i = n; i > p; i--)
 
-&#x20;   a\[i] = a\[i - 1];
+    a[i] = a[i - 1];
 
 ```
 
-
-
-La \*\*ștergere\*\*, elementele sunt deplasate spre stânga:
-
+La **ștergere**, elementele sunt deplasate spre stânga:
 
 
 ```cpp
-
 for (int i = p; i < n - 1; i++)
 
-&#x20;   a\[i] = a\[i + 1];
+    a[i] = a[i + 1];
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 56. Complexitatea algoritmilor
-
+# 56. Complexitatea algoritmilor
 
 
 Pentru BAC este util să putem identifica aproximativ eficiența unei soluții.
 
 
-
-\### O singură parcurgere
-
+### O singură parcurgere
 
 
 ```cpp
-
 for (int i = 0; i < n; i++)
 
 ```
 
-
-
 Complexitate:
 
 
-
 ```text
-
 O(n)
 
 ```
 
+---
 
 
-\---
-
-
-
-\### Două bucle imbricate
-
+### Două bucle imbricate
 
 
 ```cpp
-
 for (int i = 0; i < n; i++)
 
-&#x20;   for (int j = 0; j < n; j++)
+    for (int j = 0; j < n; j++)
 
 ```
-
-
 
 Complexitate:
 
 
-
 ```text
-
 O(n²)
 
 ```
 
+---
 
 
-\---
-
-
-
-\### Căutare binară
-
+### Căutare binară
 
 
 ```text
-
 O(log n)
 
 ```
 
+---
 
 
-\---
-
-
-
-\### Sortări elementare
-
+### Sortări elementare
 
 
 De regulă:
 
 
-
 ```text
-
 O(n²)
 
 ```
 
+---
 
 
-\---
-
-
-
-\### Sortarea cu `std::sort`
-
+### Sortarea cu `std::sort`
 
 
 În mod uzual:
 
 
-
 ```text
-
 O(n log n)
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 57. Alegerea algoritmului potrivit
-
+# 57. Alegerea algoritmului potrivit
 
 
 Într-o problemă cu tablouri, trebuie să identificăm mai întâi operația cerută.
-
 
 
 | Cerință                                      | Tehnică                         |
@@ -3401,444 +2593,336 @@ O(n log n)
 | combinarea a două tablouri sortate           | interclasare                    |
 
 
-
-\---
-
+---
 
 
-\# 58. Tipare esențiale de memorat
+# 58. Tipare esențiale de memorat
 
 
-
-\## Contor
-
+## Contor
 
 
 ```cpp
-
 int cnt = 0;
 
 
-
 for (int i = 0; i < n; i++)
 
-&#x20;   if (conditie)
+    if (conditie)
 
-&#x20;       cnt++;
+        cnt++;
 
 ```
 
+---
 
 
-\---
-
-
-
-\## Sumă condiționată
-
+## Sumă condiționată
 
 
 ```cpp
-
 int s = 0;
 
 
-
 for (int i = 0; i < n; i++)
 
-&#x20;   if (conditie)
+    if (conditie)
 
-&#x20;       s += a\[i];
+        s += a[i];
 
 ```
 
+---
 
 
-\---
-
-
-
-\## Maxim
-
+## Maxim
 
 
 ```cpp
-
-int maxim = a\[0];
-
+int maxim = a[0];
 
 
 for (int i = 1; i < n; i++)
 
-&#x20;   if (a\[i] > maxim)
+    if (a[i] > maxim)
 
-&#x20;       maxim = a\[i];
+        maxim = a[i];
 
 ```
 
+---
 
 
-\---
-
-
-
-\## Minim
-
+## Minim
 
 
 ```cpp
-
-int minim = a\[0];
-
+int minim = a[0];
 
 
 for (int i = 1; i < n; i++)
 
-&#x20;   if (a\[i] < minim)
+    if (a[i] < minim)
 
-&#x20;       minim = a\[i];
+        minim = a[i];
 
 ```
 
+---
 
 
-\---
-
-
-
-\## Căutare
-
+## Căutare
 
 
 ```cpp
-
 int poz = -1;
-
 
 
 for (int i = 0; i < n; i++)
 
 {
 
-&#x20;   if (a\[i] == x)
+    if (a[i] == x)
 
-&#x20;   {
+    {
 
-&#x20;       poz = i;
+        poz = i;
 
-&#x20;       break;
+        break;
 
-&#x20;   }
+    }
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\## Secvență
-
+## Secvență
 
 
 ```cpp
-
 int lung = 1;
 
 int maxim = 1;
 
 
-
 for (int i = 1; i < n; i++)
 
 {
 
-&#x20;   if (conditie)
+    if (conditie)
 
-&#x20;       lung++;
+        lung++;
 
-&#x20;   else
+    else
 
-&#x20;       lung = 1;
+        lung = 1;
 
 
+    if (lung > maxim)
 
-&#x20;   if (lung > maxim)
-
-&#x20;       maxim = lung;
+        maxim = lung;
 
 }
 
 ```
 
+---
 
 
-\---
-
-
-
-\## Ștergere
-
+## Ștergere
 
 
 ```cpp
-
 for (int i = p; i < n - 1; i++)
 
-&#x20;   a\[i] = a\[i + 1];
-
+    a[i] = a[i + 1];
 
 
 n--;
 
 ```
 
+---
 
 
-\---
-
-
-
-\## Inserare
-
+## Inserare
 
 
 ```cpp
-
 for (int i = n; i > p; i--)
 
-&#x20;   a\[i] = a\[i - 1];
+    a[i] = a[i - 1];
 
 
-
-a\[p] = x;
+a[p] = x;
 
 n++;
 
 ```
 
+---
 
 
-\---
-
-
-
-\## Inversare
-
+## Inversare
 
 
 ```cpp
-
 for (int i = 0; i < n / 2; i++)
 
-&#x20;   swap(a\[i], a\[n - 1 - i]);
+    swap(a[i], a[n - 1 - i]);
 
 ```
 
+---
 
 
-\---
-
-
-
-\# 59. Cum abordezi o problemă cu tablouri
-
+# 59. Cum abordezi o problemă cu tablouri
 
 
 Când primești o problemă, încearcă să răspunzi în ordine la următoarele întrebări:
 
 
-
-\### 1. Trebuie să memorez tabloul?
-
+### 1. Trebuie să memorez tabloul?
 
 
 Dacă prelucrarea poate fi făcută în timpul citirii, poate să nu fie necesară memorarea.
 
 
-
-\### 2. Ce se cere?
-
+### 2. Ce se cere?
 
 
 Identifică dacă trebuie:
 
 
+* sumă;
 
-\* sumă;
+* produs;
 
-\* produs;
+* număr de elemente;
 
-\* număr de elemente;
+* maxim/minim;
 
-\* maxim/minim;
+* poziție;
 
-\* poziție;
+* verificare;
 
-\* verificare;
+* căutare;
 
-\* căutare;
+* sortare;
 
-\* sortare;
+* eliminare;
 
-\* eliminare;
+* inserare;
 
-\* inserare;
+* secvență;
 
-\* secvență;
+* frecvență;
 
-\* frecvență;
-
-\* interclasare.
-
+* interclasare.
 
 
-\### 3. Este suficientă o singură parcurgere?
-
+### 3. Este suficientă o singură parcurgere?
 
 
 Încearcă mai întâi să găsești o soluție `O(n)`.
 
 
-
-\### 4. Pot folosi un tablou de frecvență?
-
+### 4. Pot folosi un tablou de frecvență?
 
 
 Dacă valorile sunt într-un interval mic, frecvențele pot simplifica foarte mult problema.
 
 
-
-\### 5. Este necesară sortarea?
-
+### 5. Este necesară sortarea?
 
 
 Sortarea poate simplifica problemele cu:
 
 
+* valori distincte;
 
-\* valori distincte;
+* frecvențe;
 
-\* frecvențe;
+* căutări;
 
-\* căutări;
+* interclasare;
 
-\* interclasare;
-
-\* determinarea anumitor proprietăți.
-
+* determinarea anumitor proprietăți.
 
 
-\### 6. Trebuie păstrată ordinea inițială?
-
+### 6. Trebuie păstrată ordinea inițială?
 
 
 Acest lucru este foarte important înainte de a sorta sau elimina elemente.
 
 
-
-\---
-
+---
 
 
-\# 60. Cazuri-limită importante
-
+# 60. Cazuri-limită importante
 
 
 La problemele cu tablouri trebuie testate în special:
 
 
-
-\### Un singur element
-
+### Un singur element
 
 
 ```text
-
 n = 1
 
 ```
 
-
-
-\### Toate elementele sunt egale
-
+### Toate elementele sunt egale
 
 
 ```text
-
 5 5 5 5 5
 
 ```
 
-
-
-\### Toate elementele sunt diferite
-
+### Toate elementele sunt diferite
 
 
 ```text
-
 1 4 7 9 12
 
 ```
 
-
-
-\### Toate valorile sunt negative
-
+### Toate valorile sunt negative
 
 
 ```text
-
-\-5 -2 -10 -1
+-5 -2 -10 -1
 
 ```
 
-
-
-\### Tablou deja sortat
-
+### Tablou deja sortat
 
 
 ```text
-
 1 2 3 4 5
 
 ```
 
-
-
-\### Tablou sortat invers
-
+### Tablou sortat invers
 
 
 ```text
-
 5 4 3 2 1
 
 ```
 
-
-
-\### Valoarea căutată nu există
-
+### Valoarea căutată nu există
 
 
 Trebuie să avem un mod de a reprezenta acest caz, de exemplu:
 
 
-
 ```cpp
-
 poz = -1;
 
 ```
-
-
-
-
-
